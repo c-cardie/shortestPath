@@ -3,13 +3,13 @@
 #include <limits>
 using namespace std;
 
-using graph = vector<vector<int>>;
-using visited = vector<bool>;
-using path = vector<int>;
+using Graph = vector<vector<int>>;
+using Visited = vector<bool>;
+using Path = vector<int>;
 
 
 //function to test if graph is initialized correctly
-void printGraph(graph& graph) {
+void printGraph(Graph& graph) {
 
   for (int i = 0; i <= graph.size() - 1; i++) {
 
@@ -46,7 +46,7 @@ void printVisited(vector<bool>& visited) {
 
 }
 
-void findAllPaths(graph& graph, int start, int end, path& path, visited& visited, vector<vector<int>>& allPaths) {
+void findAllPaths(Graph& graph, int start, int end, Path& path, Visited& visited, vector<vector<int>>& allPaths) {
 
     //Base case: if start equals end, add the end node to the path
     //and store the path in allPaths
@@ -136,18 +136,25 @@ void findSmallestPath(vector<vector<int>>& allPaths) {
     }
 
     //print smallest path and length
-    
-    for (int i = 0; i <= smallestPaths.size() - 1; i++) {
+    if (smallestPaths.empty()) {
 
-        cout << "length: " << smallestPaths[i].first << "   path: ";
+       cout << "no paths found" << endl;
 
-        for (int j = 0; j <= (smallestPaths[i].second.size()) - 1; j++) {
+    } else {
 
-                cout << smallestPaths[i].second[j] << " ";
+         for (int i = 0; i <= smallestPaths.size() - 1; i++) {
+
+            cout << "length: " << smallestPaths[i].first << "   path: ";
+
+            for (int j = 0; j <= (smallestPaths[i].second.size()) - 1; j++) {
+
+                    cout << smallestPaths[i].second[j] << " ";
+
+            }
+
+            cout << endl;
 
         }
-
-        cout << endl;
 
     }
    
@@ -155,7 +162,11 @@ void findSmallestPath(vector<vector<int>>& allPaths) {
 
 int main() {
 
-graph graph = {
+//test case 1
+
+cout << "test case 1" << endl;
+
+Graph graph = {
 
     {1,2},
     {3,5},
@@ -166,16 +177,9 @@ graph graph = {
 
 };
 
-//testing if graph is initialized correctly
-//printGraph(graph);
-
-path path;
+Path path;
 
 vector<bool> visited(graph.size());
-
-
-//testing to see if visited has the correct number of slots based on the graph
-//printVisited(visited);
 
 vector<vector<int>> allPaths;
 
@@ -185,5 +189,30 @@ findAllPaths(graph, 0, 3, path, visited, allPaths);
 //printAllPaths(allPaths);
 
 findSmallestPath(allPaths);
+
+//test case 2
+
+cout << "test case 2" << endl;
+
+Graph graph2 = {
+
+{1,2,3},
+{},
+{3},
+{1,5},
+{5},
+{}
+
+};
+
+Path path2;
+
+Visited visited2(graph2.size());
+
+vector<vector<int>> allPaths2;
+
+findAllPaths(graph2, 0, 5, path2, visited2, allPaths2);
+
+findSmallestPath(allPaths2);
 
 }
