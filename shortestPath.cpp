@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <limits>
 using namespace std;
 
 using graph = vector<vector<int>>;
@@ -106,6 +107,52 @@ void printAllPaths(vector<vector<int>>& allPaths) {
 
 }
 
+//function to find the smallest path
+void findSmallestPath(vector<vector<int>>& allPaths) {
+
+    vector<pair<int, vector<int>>> smallestPaths;
+
+    int smallestPathLength = numeric_limits<int>::max();
+
+    for (int i = 0; i <= allPaths.size() - 1; i++) {
+
+        int CurPathLength = allPaths[i].size() - 1;
+
+        if (CurPathLength < smallestPathLength) {
+
+            smallestPathLength = CurPathLength;
+
+            smallestPaths.clear();
+
+            smallestPaths.push_back({smallestPathLength, allPaths[i]});
+
+        }
+        else if (CurPathLength == smallestPathLength) {
+
+            smallestPaths.push_back({smallestPathLength, allPaths[i]});
+
+        }
+
+    }
+
+    //print smallest path and length
+    
+    for (int i = 0; i <= smallestPaths.size() - 1; i++) {
+
+        cout << "length: " << smallestPaths[i].first << "   path: ";
+
+        for (int j = 0; j <= (smallestPaths[i].second.size()) - 1; j++) {
+
+                cout << smallestPaths[i].second[j] << " ";
+
+        }
+
+        cout << endl;
+
+    }
+   
+}
+
 int main() {
 
 graph graph = {
@@ -135,6 +182,8 @@ vector<vector<int>> allPaths;
 findAllPaths(graph, 0, 3, path, visited, allPaths);
 
 //print all paths
-printAllPaths(allPaths);
+//printAllPaths(allPaths);
+
+findSmallestPath(allPaths);
 
 }
