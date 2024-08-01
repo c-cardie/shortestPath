@@ -46,6 +46,7 @@ void printVisited(vector<bool>& visited) {
 
 }
 
+//function to find all paths in a graph
 void findAllPaths(Graph& graph, int start, int end, Path& path, Visited& visited, vector<vector<int>>& allPaths) {
 
     //Base case: if start equals end, add the end node to the path
@@ -110,25 +111,30 @@ void printAllPaths(vector<vector<int>>& allPaths) {
 //function to find the smallest path
 void findSmallestPath(vector<vector<int>>& allPaths) {
 
+    //smallestPaths holds the path's size (int)
+    //and the path (vector<int>)
     vector<pair<int, vector<int>>> smallestPaths;
 
+    //initialize the smallest path length with maximum possible value
     int smallestPathLength = numeric_limits<int>::max();
 
+    //iterate through allPaths to find the smallest path(s)
     for (int i = 0; i <= allPaths.size() - 1; i++) {
 
+        //current path length is size of the ith element of allPaths
+        //allPath's elements are vectors
         int CurPathLength = allPaths[i].size() - 1;
 
         if (CurPathLength < smallestPathLength) {
 
+            //Found a smaller path, clear previous paths and update smallest length
             smallestPathLength = CurPathLength;
-
             smallestPaths.clear();
-
             smallestPaths.push_back({smallestPathLength, allPaths[i]});
 
         }
         else if (CurPathLength == smallestPathLength) {
-
+            //found another path of the same smallest length
             smallestPaths.push_back({smallestPathLength, allPaths[i]});
 
         }
@@ -184,9 +190,6 @@ vector<bool> visited(graph.size());
 vector<vector<int>> allPaths;
 
 findAllPaths(graph, 0, 3, path, visited, allPaths);
-
-//print all paths
-//printAllPaths(allPaths);
 
 findSmallestPath(allPaths);
 
