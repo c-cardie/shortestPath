@@ -169,33 +169,46 @@ void findSmallestPath(vector<vector<int>>& allPaths) {
 int main() {
 
 //test case 1
-
 cout << "test case 1" << endl;
+cout << endl;
 
 Graph graph = {
 
-    {1,2},
-    {3,5},
-    {3},
-    {},
-    {1},
-    {3,4}
+   /*0*/ {1,2},
+   /*1*/ {3,5},
+   /*2*/ {3},
+   /*3*/ {},
+   /*4*/ {1},
+   /*5*/ {3,4}
 
 };
 
+//printing first graph
+cout << "graph 1" << endl;
+printGraph(graph);
+cout << endl;
+
 Path path;
-
 vector<bool> visited(graph.size());
-
 vector<vector<int>> allPaths;
 
+//printing all paths from 0 to 3 in graph 1
 findAllPaths(graph, 0, 3, path, visited, allPaths);
+cout << "all paths from 0 to 3 in graph 1" << endl;
+printAllPaths(allPaths);
+cout << endl;
 
+//finding (and printing) the smallest path from 0 to 3 in graph 1
+cout << "shortest path from 0 to 3 in graph 1" << endl;
 findSmallestPath(allPaths);
+cout << endl;
+
+cout << "-----------------------------------" << endl;
 
 //test case 2
 
 cout << "test case 2" << endl;
+cout << endl;
 
 Graph graph2 = {
 
@@ -208,14 +221,25 @@ Graph graph2 = {
 
 };
 
+cout << "graph 2" << endl;
+printGraph(graph2);
+cout << endl;
+
 Path path2;
-
 Visited visited2(graph2.size());
-
 vector<vector<int>> allPaths2;
 
+//printing all paths from 0 to 5 in graph 2
 findAllPaths(graph2, 0, 5, path2, visited2, allPaths2);
+cout << "all paths from 0 to 5 in graph 2" << endl;
+printAllPaths(allPaths2);
+cout << endl;
 
+//finding (and printing) the smallest path from 0 to 5 in graph 2
+cout << "shortest path from 0 to 5 in graph 2" << endl;
 findSmallestPath(allPaths2);
+cout << endl;
+
+cout << "-----------------------------------" << endl;
 
 }
