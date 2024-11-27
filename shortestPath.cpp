@@ -118,6 +118,15 @@ void findSmallestPath(vector<vector<int>>& allPaths) {
     //initialize the smallest path length with maximum possible value
     int smallestPathLength = numeric_limits<int>::max();
 
+    //if no paths exists
+    if(allPaths.empty()) {
+
+        cout << "no paths :(" << endl;
+        //exit function
+        return;
+
+    }
+
     //iterate through allPaths to find the smallest path(s)
     for (int i = 0; i <= allPaths.size() - 1; i++) {
 
@@ -241,5 +250,23 @@ findSmallestPath(allPaths2);
 cout << endl;
 
 cout << "-----------------------------------" << endl;
+
+cout << "test case 3 - still looking at graph 2" << endl;
+cout << endl;
+
+Path path3;
+Visited visited3(graph2.size());
+vector<vector<int>> allPaths3;
+
+//printing all paths from 5 to 0 in graph 2
+findAllPaths(graph2, 5, 0, path3, visited3, allPaths3);
+cout << "all paths from 5 to 0 in graph 2" << endl;
+printAllPaths(allPaths3);
+cout << endl;
+
+//finding (and printing) the smallest path from 5 to 0 in graph 2
+cout << "shortest path from 5 to 0 in graph 2" << endl;
+findSmallestPath(allPaths3);
+cout << endl;
 
 }
