@@ -132,7 +132,7 @@ void findSmallestPath(vector<vector<int>>& allPaths) {
 
         //current path length is size of the ith element of allPaths
         //allPath's elements are vectors
-        int CurPathLength = allPaths[i].size() - 1;
+        int CurPathLength = allPaths[i].size();
 
         if (CurPathLength < smallestPathLength) {
 
